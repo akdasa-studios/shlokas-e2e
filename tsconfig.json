@@ -1,11 +1,19 @@
 {
-    "compilerOptions": {
-        "baseUrl": ".",
-        "paths": {
-            "@tests/*": [ "tests/*" ],
-            "@components/*": [ "components/*" ],
-            "@scenarios/*": [ "scenarios/*" ],
-            "@utils/*": [ "utils/*" ]
-        }
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@tests/*": [
+        "tests/*"
+      ],
+      "@components/*": [
+        "components/*"
+      ],
+      "@scenarios/*": [
+        "scenarios/*"
+      ],
+      "@utils/*": [
+        "utils/*"
+      ]
     }
+  }
 }
