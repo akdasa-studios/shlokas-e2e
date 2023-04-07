@@ -1,4 +1,4 @@
-import { Locator, Page } from '@playwright/test'
+import { Page } from '@playwright/test'
 import { testId } from '@utils/testId'
 
 export class InboxDeckPage {
