@@ -1,0 +1,10 @@
+services:
+  e2e:
+    build: .
+    extra_hosts:
+        host.docker.internal: host-gateway
+    environment:
+      - CI=1
+      - WORKERS=2
+    volumes:
+      - ./report:/e2e/report
