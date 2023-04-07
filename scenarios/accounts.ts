@@ -1,6 +1,7 @@
 import { Browser, BrowserContext, Page } from '@playwright/test'
 import { TabsBar } from '@components/shared'
 import { Account } from '@components/settings'
+import { MAIL_URL } from '@utils/env'
 
 export async function signUp(
   context: BrowserContext,
@@ -22,11 +23,11 @@ export async function signUp(
 
   // 1. open mail client and confirm email
   const mailPage = await context.newPage()
-  await mailPage.goto('http://' + (process.env.BASE_URL||'localhost') + ':1080/')
+  await mailPage.goto(MAIL_URL)
   await mailPage.evaluate(() =>
     localStorage.setItem('mailcatcherSeparatorHeight', '400')
   )
-  await mailPage.goto('http://' + (process.env.BASE_URL||'localhost') + ':1080/')
+  await mailPage.goto(MAIL_URL)
 
   await mailPage.getByRole('cell', { name: `<${email}>` }).first().click()
 

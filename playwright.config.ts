@@ -1,4 +1,6 @@
-import { defineConfig, devices } from '@playwright/test';
+import { defineConfig, devices } from '@playwright/test'
+import { BASE_URL } from './utils/env'
+
 
 export default defineConfig({
   timeout: 60 * 1000,
@@ -14,8 +16,7 @@ export default defineConfig({
     ['github']
   ],
   use: {
-    baseURL: process.env.BASE_URL || 'http://localhost:8080',
-    // baseURL: process.env.BASE_URL || 'http://host.docker.internal:8080',
+    baseURL: BASE_URL,
     trace: 'on-first-retry',
     video: 'on'
   },
