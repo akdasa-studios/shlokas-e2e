@@ -1,5 +1,5 @@
 import { defineConfig, devices } from '@playwright/test'
-import { BASE_URL } from './utils/env'
+import { SHLOKAS_URL } from './utils/env'
 
 
 export default defineConfig({
@@ -16,7 +16,7 @@ export default defineConfig({
     ['github']
   ],
   use: {
-    baseURL: BASE_URL,
+    baseURL: SHLOKAS_URL,
     trace: 'on-first-retry',
     video: 'on'
   },
@@ -58,11 +58,4 @@ export default defineConfig({
     //   use: { ..devices['Desktop Chrome'], channel: 'chrome' },
     // },
   ],
-
-  /* Run your local dev server before starting the tests */
-  // webServer: {
-  //   command: 'npm run start',
-  //   url: 'http://127.0.0.1:3000',
-  //   reuseExistingServer: !process.env.CI,
-  // },
 });
