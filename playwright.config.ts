@@ -18,7 +18,7 @@ export default defineConfig({
   use: {
     baseURL: SHLOKAS_URL,
     trace: 'on-first-retry',
-    video: 'on'
+    video: 'on-first-retry'
   },
 
   /* Configure projects for major browsers */
