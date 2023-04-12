@@ -58,7 +58,7 @@ export async function logIn(
   await account.password.click()
   await account.password.type('12345678')
   await account.logIn.click()
-  await appPage.waitForTimeout(500)
+  await appPage.waitForTimeout(750)
 }
 
 export async function logInNewDevice(
