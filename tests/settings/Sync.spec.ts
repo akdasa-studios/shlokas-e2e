@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test'
 import { Application, TabsBar } from '@components/shared'
-import { Account, Settings } from '@components/settings'
+import { Account } from '@components/settings'
 import { LibraryPage } from '@components/library'
 import { addCardsToInbox, addCardsToReview } from '@scenarios/cards'
 import { nextDays } from '@utils/dates'
@@ -85,7 +85,6 @@ test.describe('Settings › Account › Sync', () => {
     const app2 = new Application(page2)
     const tabs2 = new TabsBar(page2)
     const account2 = new Account(page2)
-    const settings2 = new Settings(page2)
 
     // device2: add same verse
     await tabs2.libraryTab.click()
@@ -93,7 +92,6 @@ test.describe('Settings › Account › Sync', () => {
 
     // device2: sync
     await tabs2.settingsTab.click()
-    await settings2.account.click()
     await account2.sync.click()
     await account2.sync.click()
     await account2.syncingProgress.waitFor({ state: 'hidden' })
@@ -123,11 +121,9 @@ test.describe('Settings › Account › Sync', () => {
     const account2 = new Account(page2)
     const app2 = new Application(page2)
     const tabs2 = new TabsBar(page2)
-    const settings2 = new Settings(page2)
     await tabs2.libraryTab.click()
     await addCardsToInbox(page2, ['BG 1.1'])
     await tabs2.settingsTab.click()
-    await settings2.account.click()
     await account2.sync.click()
     await account2.sync.click()
     await account2.syncingProgress.waitFor({ state: 'hidden' })

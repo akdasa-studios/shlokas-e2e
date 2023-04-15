@@ -50,7 +50,6 @@ export async function logIn(
 
   await account.open()
   await account.logIn.click()
-  await appPage.getByRole('dialog').waitFor()
   await account.email.clear()
   await account.password.clear()
   await account.email.click()
@@ -77,12 +76,7 @@ export async function logInNewDevice(
 }
 
 export async function sync(page: Page) {
-  const account  = new Account(page)
-  // const tabs     = new TabsBar(page)
-  // const settings = new Settings(page)
-
-  // await tabs.settingsTab.click()
-  // await settings.account.click()
+  const account = new Account(page)
   await account.sync.click()
 }
 
