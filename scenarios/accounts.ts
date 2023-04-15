@@ -68,7 +68,7 @@ export async function logInNewDevice(
   const page    = await context.newPage()
   const tabs    = new TabsBar(page)
 
-  await page.goto('/?tutorialEnabled=false')
+  await page.goto('/home/library/?tutorialEnabled=false')
   await tabs.settingsTab.click()
   await logIn(page, email)
 
