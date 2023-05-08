@@ -1,3 +1,6 @@
+name: 'shlokas'
+
+
 services:
   e2e:
     build: .
@@ -8,3 +11,8 @@ services:
       - WORKERS=2
     volumes:
       - ./report:/e2e/report
+
+
+networks:
+  shlokas:
+    name: shlokas
