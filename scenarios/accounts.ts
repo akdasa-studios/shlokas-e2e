@@ -1,6 +1,6 @@
 import { Browser, BrowserContext, Page } from '@playwright/test'
 import { TabsBar } from '@components/shared'
-import { Account } from '@components/settings'
+import { Account, Settings } from '@components/settings'
 import { MAIL_URL } from '@utils/env'
 
 export async function signUp(
@@ -8,16 +8,18 @@ export async function signUp(
   appPage: Page,
   email: string
 ) {
+  const tabs = new TabsBar(appPage)
+  const settings = new Settings(appPage)
   const account = new Account(appPage)
 
+  // navigate to account page
+  await tabs.settingsTab.click()
+  await settings.account.click()
+
   // act
-  await account.open()
   await account.signUpViaEmail.click()
-  await account.name.type('Ivan Petrović')
   await account.email.click()
   await account.email.type(email)
-  await account.password.click()
-  await account.password.type('12345678')
   await account.signUp.click()
   await appPage.waitForTimeout(2000)
 
@@ -31,33 +33,20 @@ export async function signUp(
 
   await mailPage.getByRole('cell', { name: `<${email}>` }).first().click()
 
-  await mailPage.frameLocator('iframe').getByRole('link', { name: 'Confirm email' }).click()
-  await mailPage.waitForTimeout(4000) // code below doesn't work for some reason
+  const code = await mailPage.frameLocator('iframe').getByTitle('code').textContent()
+  // await mailPage.waitForTimeout(4000) // code below doesn't work for some reason
   await mailPage.close()
+
+  await account.code.click()
+  await account.code.type(code)
+  await account.signIn.click()
+  await account.signIn.waitFor({ state: 'hidden' })
+
   // const [popup] = await Promise.all([
   //   mailPage.waitForEvent('popup'),
   //  mailPage.frameLocator('iframe').getByRole('link', { name: 'Confirm email' }).click()
   // ])
   // popup.getByText('Email has been confirmed!').waitFor()
-}
-
-export async function logIn(
-  appPage: Page,
-  email: string,
-) {
-  await appPage.bringToFront()
-  const account = new Account(appPage)
-
-  await account.open()
-  await account.logIn.click()
-  await account.email.clear()
-  await account.password.clear()
-  await account.email.click()
-  await account.email.type(email)
-  await account.password.click()
-  await account.password.type('12345678')
-  await account.logIn.click()
-  await appPage.waitForTimeout(750)
 }
 
 export async function logInNewDevice(
@@ -70,7 +59,7 @@ export async function logInNewDevice(
 
   await page.goto('/home/library/?tutorialEnabled=false')
   await tabs.settingsTab.click()
-  await logIn(page, email)
+  await signUp(context, page, email)
 
   return [context, page]
 }

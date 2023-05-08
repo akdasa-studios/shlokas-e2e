@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test'
 import { Application, TabsBar } from '@components/shared'
-import { Account } from '@components/settings'
+import { Account, Settings } from '@components/settings'
 import { LibraryPage } from '@components/library'
 import { addCardsToInbox, addCardsToReview } from '@scenarios/cards'
 import { nextDays } from '@utils/dates'
@@ -23,7 +23,6 @@ test.describe('Settings › Account › Sync', () => {
     const account1 = new Account(page)
     await addCardsToReview(page, ['BG 1.1'])
     await signUp(context, page, email)
-    await logIn(page, email)
     await account1.sync.click()
     await account1.syncingProgress.waitFor({ state: 'hidden' })
 
@@ -49,7 +48,6 @@ test.describe('Settings › Account › Sync', () => {
     const account1 = new Account(page)
     await addCardsToReview(page, ['BG 1.1'])
     await signUp(context, page, email)
-    await logIn(page, email)
     await account1.sync.click()
     await account1.syncingProgress.waitFor({ state: 'hidden' })
 
@@ -76,7 +74,6 @@ test.describe('Settings › Account › Sync', () => {
     const account1 = new Account(page)
     await addCardsToReview(page, ['BG 1.1'])
     await signUp(context, page, email)
-    await logIn(page, email)
     await account1.sync.click()
     await account1.syncingProgress.waitFor({ state: 'hidden' })
 
@@ -112,7 +109,6 @@ test.describe('Settings › Account › Sync', () => {
     const account1 = new Account(page)
     await addCardsToReview(page, ['BG 1.1'])
     await signUp(context, page, email)
-    await logIn(page, email)
     await account1.sync.click()
     await account1.syncingProgress.waitFor({ state: 'hidden' })
 
@@ -123,6 +119,7 @@ test.describe('Settings › Account › Sync', () => {
     const tabs2 = new TabsBar(page2)
     await tabs2.libraryTab.click()
     await addCardsToInbox(page2, ['BG 1.1'])
+    await expect(tabs2.inboxBadge).toHaveText('2')
     await tabs2.settingsTab.click()
     await account2.sync.click()
     await account2.sync.click()

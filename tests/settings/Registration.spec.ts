@@ -1,17 +1,21 @@
+import { Application } from '@components/shared'
 import { expect, test } from '@playwright/test'
-import { Account } from '@components/settings'
-import { getRandomString, logIn, logInNewDevice, signUp } from '@scenarios/accounts'
+import { getRandomString, logInNewDevice, signUp } from '@scenarios/accounts'
 
 
 test.describe('Settings › Account › Email', () => {
+  let app: Application
+
+  test.beforeEach(async ({ page }) => {
+    app = new Application(page)
+    await app.open()
+  })
+
   test('Register new account', async ({ page, context }) => {
-    const accountPage = new Account(page)
     const uniqueEmail = getRandomString()
     const email       = `${uniqueEmail}@test.rs`
 
     await signUp(context, page, email)
-    await expect(accountPage.verifyEmail).toBeVisible()
-    await logIn(page, email)
     await expect(page.getByText('Welcome back!')).toBeVisible()
   })
 
@@ -21,7 +25,6 @@ test.describe('Settings › Account › Email', () => {
 
     // device1: register and login
     await signUp(context, page, email)
-    await logIn(page, email)
 
     // device2: login
     const [context2, page2] = await logInNewDevice(browser, email)
