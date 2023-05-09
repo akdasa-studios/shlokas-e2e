@@ -9,8 +9,6 @@ services:
     environment:
       - CI=1
       - WORKERS=2
-      - SHLOKAS_URL=http://shlokas
-      - MAIL_URL=http://mail:1080
     volumes:
       - ./report:/e2e/report
 
