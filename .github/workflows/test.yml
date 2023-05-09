@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        run: gh search repos --owner akdasa-studios --match name shlokas --visibility public | while read -r repo _; do gh repo clone "$repo" "$repo" done
+        run: gh search repos --owner akdasa-studios --match name shlokas --visibility public | while read -r repo _; do gh repo clone "$repo" "$repo"; done
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
