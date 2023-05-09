@@ -23,12 +23,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build
-        run: (cd ./akdasa-studios/shlokas-server && ./shlokas.build.sh dev.local)
+        run: (cd ./akdasa-studios/shlokas-server && ./shlokas.build.sh testing)
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Start Environment
-        run: (cd ./akdasa-studios/shlokas-server && ./shlokas.run.sh testing.local)
+        run: (cd ./akdasa-studios/shlokas-server && ./shlokas.run.sh testing)
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
