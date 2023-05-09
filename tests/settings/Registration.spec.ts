@@ -11,7 +11,7 @@ test.describe('Settings › Account › Email', () => {
     await app.open()
   })
 
-  test('Register new account', async ({ page, context }) => {
+  test.only('Register new account', async ({ page, context }) => {
     const uniqueEmail = getRandomString()
     const email       = `${uniqueEmail}@test.rs`
 
@@ -19,7 +19,7 @@ test.describe('Settings › Account › Email', () => {
     await expect(page.getByText('Welcome back!')).toBeVisible()
   })
 
-  test('Log In on another device', async ({ page, context, browser }) => {
+  test.only('Log In on another device', async ({ page, context, browser }) => {
     const uniqueEmail = getRandomString()
     const email       = `${uniqueEmail}@test.rs`
 

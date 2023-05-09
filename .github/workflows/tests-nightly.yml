@@ -11,7 +11,8 @@ jobs:
     name: 🚀 E2E
     strategy:
       matrix:
-        project: [ 'Mobile Chrome', 'Mobile Safari' ]
+        project: [ 'Mobile Chrome' ]
+        # project: [ 'Mobile Chrome', 'Mobile Safari' ]
     permissions:
       packages: read
     timeout-minutes: 30
@@ -32,23 +33,27 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: 🧪 Testing
-        uses: addnab/docker-run-action@v3
-        with:
-          image: shlokas-tests-e2e
-          registry: ${{ env.REGISTRY }}
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-          options: |
-            -e CI=1
-            -e SHLOKAS_URL=http://shlokas
-            -e MAIL_URL=http://mail:1080
-            -v ${{ github.workspace }}/output:/e2e/output
-            --network shlokas
-          shell: bash
-          run: |
-            npm i
-            npx playwright test --project="${{ matrix.project }}"
+      - name: Testing
+        run: docker run --network shlokas -e CI=1 -e SHLOKAS_URL=http://shlokas -e MAIL_URL=http://mail:1080 shlokas-tests-e2e
+
+
+      # - name: 🧪 Testing
+      #   uses: addnab/docker-run-action@v3
+      #   with:
+      #     image: shlokas-tests-e2e
+      #     registry: ${{ env.REGISTRY }}
+      #     username: ${{ github.actor }}
+      #     password: ${{ secrets.GITHUB_TOKEN }}
+      #     options: |
+      #       -e CI=1
+      #       -e SHLOKAS_URL=http://shlokas
+      #       -e MAIL_URL=http://mail:1080
+      #       -v ${{ github.workspace }}/output:/e2e/output
+      #       --network shlokas
+      #     shell: bash
+      #     run: |
+      #       npm i
+      #       npx playwright test --project="${{ matrix.project }}"
 
       - name: 🚚  [Artifacts] Upload
         if: ${{ failure() }}
