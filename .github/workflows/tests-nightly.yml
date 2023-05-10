@@ -29,12 +29,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Start Environment
-        run: (cd ./akdasa-studios/shlokas-server && ./shlokas.run.sh testing)
+        run: (cd ./akdasa-studios/shlokas-server && ./shlokas.run.sh testing logs)
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: logs
-        run: (cd ./akdasa-studios/shlokas-server && docker compose ps)
+        run: docker ps
 
       - name: logs
         run: (cd ./akdasa-studios/shlokas-server && docker compose logs balancer)
