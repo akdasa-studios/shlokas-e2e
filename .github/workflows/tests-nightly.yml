@@ -55,9 +55,9 @@ jobs:
       #     run: |
       #       npm i
       #       npx playwright test --project="${{ matrix.project }}"
+      # if: ${{ failure() }}
 
       - name: 🚚  [Artifacts] Upload
-        if: ${{ failure() }}
         uses: actions/upload-artifact@v3.1.2
         with:
           name: e2e-${{ matrix.project }}
