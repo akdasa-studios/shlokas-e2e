@@ -34,7 +34,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: logs
-        run: docker network ls
+        run: (cd ./akdasa-studios/shlokas-server && docker compose ps)
+
+      - name: logs
+        run: (cd ./akdasa-studios/shlokas-server && docker compose logs balancer)
 
       - name: Testing
         run: (cd ./akdasa-studios/shlokas-e2e && docker compose up)

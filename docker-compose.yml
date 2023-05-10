@@ -1,4 +1,4 @@
-name: 'shlokas'
+name: 'shlokas-tests'
 version: "3"
 
 services:
