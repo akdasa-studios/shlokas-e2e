@@ -28,7 +28,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Start Environment
-        run: (cd ./akdasa-studios/shlokas-server && ./shlokas.run.sh testing logs)
+        run: (cd ./akdasa-studios/shlokas-server && ./shlokas.run.sh testing)
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
