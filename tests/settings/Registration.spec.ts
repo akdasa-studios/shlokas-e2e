@@ -11,7 +11,7 @@ test.describe('Settings › Account › Email', () => {
     await app.open()
   })
 
-  test.only('Register new account', async ({ page, context }) => {
+  test('Register new account', async ({ page, context }) => {
     const uniqueEmail = getRandomString()
     const email       = `${uniqueEmail}@test.rs`
 
