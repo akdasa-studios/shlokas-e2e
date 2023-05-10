@@ -32,12 +32,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: logs
-        run: docker ps
-
-      - name: logs
-        run: (cd ./akdasa-studios/shlokas-server && docker compose logs balancer)
-
       - name: 🧪 Testing
         uses: addnab/docker-run-action@v3
         with:
