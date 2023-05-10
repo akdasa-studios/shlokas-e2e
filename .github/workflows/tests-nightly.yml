@@ -33,28 +33,31 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Testing
-        run: (cd ./akdasa-studios/shlokas-e2e && docker compose up)
+      # - name: Testing
+      #   run: (cd ./akdasa-studios/shlokas-e2e && docker compose up)
         # run: docker run --network shlokas -e CI=1 -e SHLOKAS_URL=http://shlokas -e MAIL_URL=http://mail:1080 -v ${{ github.workspace }}/output:/e2e/output shlokas-tests-e2e
 
 
-      # - name: 🧪 Testing
-      #   uses: addnab/docker-run-action@v3
-      #   with:
-      #     image: shlokas-tests-e2e
-      #     registry: ${{ env.REGISTRY }}
-      #     username: ${{ github.actor }}
-      #     password: ${{ secrets.GITHUB_TOKEN }}
-      #     options: |
-      #       -e CI=1
-      #       -e SHLOKAS_URL=http://shlokas
-      #       -e MAIL_URL=http://mail:1080
-      #       -v ${{ github.workspace }}/output:/e2e/output
-      #       --network shlokas
-      #     shell: bash
-      #     run: |
-      #       npm i
-      #       npx playwright test --project="${{ matrix.project }}"
+      - name: 🧪 Testing
+        uses: addnab/docker-run-action@v3
+        with:
+          image: shlokas-tests-e2e
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          options: |
+            -e CI=1
+            -e SHLOKAS_URL=http://shlokas
+            -e MAIL_URL=http://mail:1080
+            -v ${{ github.workspace }}/output:/e2e/output
+            --network shlokas
+          shell: bash
+          run: |
+            ping db -c 5
+            ping auth -c 5
+            ping balancer -c 5
+            npm i
+            npx playwright test --project="${{ matrix.project }}"
       # if: ${{ failure() }}
 
       - name: 🚚  [Artifacts] Upload
