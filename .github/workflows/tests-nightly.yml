@@ -11,8 +11,7 @@ jobs:
     name: 🚀 E2E
     strategy:
       matrix:
-        project: [ 'Mobile Chrome' ]
-        # project: [ 'Mobile Chrome', 'Mobile Safari' ]
+        project: [ 'Mobile Chrome', 'Mobile Safari' ]
     permissions:
       packages: read
     timeout-minutes: 30
@@ -39,32 +38,25 @@ jobs:
       - name: logs
         run: (cd ./akdasa-studios/shlokas-server && docker compose logs balancer)
 
-      - name: Testing
-        run: (cd ./akdasa-studios/shlokas-e2e && docker compose up)
-        # run: docker run --network shlokas -e CI=1 -e SHLOKAS_URL=http://shlokas -e MAIL_URL=http://mail:1080 -v ${{ github.workspace }}/output:/e2e/output shlokas-tests-e2e
-
-      - name: logs
-        run: docker network ls
-
-
-      # - name: 🧪 Testing
-      #   uses: addnab/docker-run-action@v3
-      #   with:
-      #     image: shlokas-tests-e2e
-      #     registry: ${{ env.REGISTRY }}
-      #     username: ${{ github.actor }}
-      #     password: ${{ secrets.GITHUB_TOKEN }}
-      #     options: -e CI=1 -e SHLOKAS_URL=http://shlokas -e MAIL_URL=http://mail:1080 -v ${{ github.workspace }}/output:/e2e/output --network shlokas
-      #     shell: bash
-      #     run: |
-      #       curl db
-      #       curl auth
-      #       curl balancer
-      #       npm i
-      #       npx playwright test --project="${{ matrix.project }}"
-      # if: ${{ failure() }}
+      - name: 🧪 Testing
+        uses: addnab/docker-run-action@v3
+        with:
+          image: shlokas-tests-e2e
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          options: |
+            -e CI=1 -e SHLOKAS_URL=http://shlokas
+            -e MAIL_URL=http://mail:1080
+            -v ${{ github.workspace }}/output:/e2e/output
+            --network shlokas
+          shell: bash
+          run: |
+            npm i
+            npx playwright test --project="${{ matrix.project }}"
 
       - name: 🚚  [Artifacts] Upload
+        if: ${{ failure() }}
         uses: actions/upload-artifact@v3.1.2
         with:
           name: e2e-${{ matrix.project }}

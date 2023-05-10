@@ -6,7 +6,6 @@ export default defineConfig({
   timeout: 60 * 1000,
   testDir: './tests',
   fullyParallel: true,
-
   // forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 0 : 0,
   workers: process.env.WORKERS ? parseInt(process.env.WORKERS) : (process.env.CI ? 1 : undefined),
@@ -18,8 +17,8 @@ export default defineConfig({
   ],
   use: {
     baseURL: SHLOKAS_URL,
-    trace: 'on',
-    video: 'on', //'on-first-retry'
+    trace: 'on-first-retry',
+    video: 'on-first-retry'
   },
 
   /* Configure projects for major browsers */
