@@ -53,9 +53,9 @@ jobs:
             --network shlokas
           shell: bash
           run: |
-            ping db -c 5
-            ping auth -c 5
-            ping balancer -c 5
+            curl db
+            curl auth
+            curl balancer
             npm i
             npx playwright test --project="${{ matrix.project }}"
       # if: ${{ failure() }}
