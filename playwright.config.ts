@@ -7,7 +7,7 @@ export default defineConfig({
   testDir: './tests',
   fullyParallel: true,
   // forbidOnly: !!process.env.CI,
-  retries: process.env.CI ? 1 : 0,
+  retries: process.env.CI ? 0 : 0,
   workers: process.env.WORKERS ? parseInt(process.env.WORKERS) : (process.env.CI ? 1 : undefined),
   outputDir: './output/results',
   reporter: [
@@ -17,8 +17,8 @@ export default defineConfig({
   ],
   use: {
     baseURL: SHLOKAS_URL,
-    trace: 'on-first-retry',
-    video: 'on-first-retry'
+    trace: 'on',
+    video: 'on', //'on-first-retry'
   },
 
   /* Configure projects for major browsers */
@@ -43,10 +43,10 @@ export default defineConfig({
       name: 'Mobile Chrome',
       use: { ...devices['Pixel 5'] },
     },
-    {
-      name: 'Mobile Safari',
-      use: { ...devices['iPhone 12'] },
-    },
+    // {
+    //   name: 'Mobile Safari',
+    //   use: { ...devices['iPhone 12'] },
+    // },
 
     /* Test against branded browsers. */
     // {

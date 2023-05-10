@@ -19,7 +19,7 @@ test.describe('Settings › Account › Email', () => {
     await expect(page.getByText('Welcome back!')).toBeVisible()
   })
 
-  test.only('Log In on another device', async ({ page, context, browser }) => {
+  test('Log In on another device', async ({ page, context, browser }) => {
     const uniqueEmail = getRandomString()
     const email       = `${uniqueEmail}@test.rs`
 

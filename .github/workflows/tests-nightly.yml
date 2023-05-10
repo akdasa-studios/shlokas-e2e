@@ -34,7 +34,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Testing
-        run: docker run --network shlokas -e CI=1 -e SHLOKAS_URL=http://shlokas -e MAIL_URL=http://mail:1080 shlokas-tests-e2e
+        run: docker run --network shlokas -e CI=1 -e SHLOKAS_URL=http://shlokas -e MAIL_URL=http://mail:1080 -v ${{ github.workspace }}/output:/e2e/output shlokas-tests-e2e
 
 
       # - name: 🧪 Testing
