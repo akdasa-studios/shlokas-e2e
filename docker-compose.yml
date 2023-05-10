@@ -1,5 +1,5 @@
-name: 'shlokas-tests'
-
+name: 'shlokas'
+version: "3"
 
 services:
   e2e:
