@@ -4,13 +4,17 @@ name: 'shlokas-tests'
 services:
   e2e:
     build: .
-    extra_hosts:
-        host.docker.internal: host-gateway
+    # extra_hosts:
+    #     host.docker.internal: host-gateway
     environment:
       - CI=1
       - WORKERS=2
+      - SHLOKAS_URL=http://shlokas
+      - MAIL_URL=http://mail:1080
     volumes:
       - ./report:/e2e/report
+    networks:
+      - shlokas
 
 
 networks:
