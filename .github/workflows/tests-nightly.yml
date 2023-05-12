@@ -1,5 +1,10 @@
-name: Tests
-on: push
+name: E2E Tests
+
+
+on:
+  push:
+  schedule:
+    - cron: '0 0 * * *'
 
 
 env:
@@ -23,12 +28,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build
-        run: (cd ./akdasa-studios/shlokas-server && ./shlokas.build.sh dev)
+        run: (cd ./akdasa-studios/shlokas-server && ./shlokas.build.sh testing:dev)
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Start Environment
-        run: (cd ./akdasa-studios/shlokas-server && ./shlokas.run.sh dev)
+        run: (cd ./akdasa-studios/shlokas-server && ./shlokas.run.sh testing:dev)
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
