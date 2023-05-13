@@ -6,5 +6,5 @@ This repository contains the end-to-end tests for the Shlokas mobile app. The te
 
 
 <p align="center">
-  <a href="https://github.com/akdasa-studios/shlokas-e2e/actions/workflows/tests-nightly.yml"><img src="https://github.com/akdasa-studios/shlokas-e2e/actions/workflows/tests-nightly.yml/badge.svg?event=schedule)" alt="Tests"></a>
+  <a href="https://github.com/akdasa-studios/shlokas-e2e/actions/workflows/tests-nightly.yml"><img src="https://github.com/akdasa-studios/shlokas-e2e/actions/workflows/tests-nightly.yml/badge.svg?event=schedule" alt="Tests"></a>
 </p>
