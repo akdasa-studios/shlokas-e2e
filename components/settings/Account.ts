@@ -3,7 +3,7 @@ import { Page } from '@playwright/test'
 export class Account {
   constructor(private readonly page: Page) {}
 
-  get signUpViaEmail() { return this.page.getByRole('button', { name: 'Log In'})  }
+  get signUpViaEmail() { return this.page.getByRole('button', { name: 'Sign in with Email'})  }
   get email()    { return this.page.getByLabel('EMail').first() }
   get code()     { return this.page.getByLabel('Code').first() }
   get signUp()   { return this.page.getByRole('button',  { name: 'Send Email'}) }
