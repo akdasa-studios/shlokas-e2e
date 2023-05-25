@@ -1,16 +1,17 @@
 import { expect, test } from '@playwright/test'
 import { Application, TabsBar } from '@components/shared'
-import { Account, Settings } from '@components/settings'
+import { Account  } from '@components/settings'
 import { LibraryPage } from '@components/library'
 import { addCardsToInbox, addCardsToReview } from '@scenarios/cards'
 import { nextDays } from '@utils/dates'
-import { getRandomString, logIn, logInNewDevice, signUp } from '@scenarios/accounts'
+import { getRandomString, logInNewDevice, signUp } from '@scenarios/accounts'
 
 
 test.beforeEach(async ({ page }) => {
   await new Application(page).goto('/home/library', {
     tutorialEnabled: false,
-    libraryLastSyncDate: 9999999999999
+    libraryLastSyncDate: 9999999999999,
+    autoSyncOnLogin: false
   })
 })
 
