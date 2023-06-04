@@ -5,7 +5,8 @@ import { Application } from '@components/shared'
 test.beforeEach(async ({ page }) => {
   await new Application(page).goto('/home/library', {
     tutorialEnabled: false,
-    libraryLastSyncDate: 9999999999999
+    libraryLastSyncDate: 9999999999999,
+    reviewCardsInRandomOrder: false,
   })
   await page.getByTestId('settings-tab').click()
 })

@@ -11,7 +11,8 @@ test.beforeEach(async ({ page }) => {
   await new Application(page).goto('/home/library', {
     tutorialEnabled: false,
     libraryLastSyncDate: 9999999999999,
-    autoSyncOnLogin: false
+    autoSyncOnLogin: false,
+    reviewCardsInRandomOrder: false,
   })
 })
 
@@ -96,6 +97,7 @@ test.describe('Settings › Account › Sync', () => {
     await app2.goto('/home/review', {
       tutorialEnabled: false,
       libraryLastSyncDate: 9999999999999,
+      reviewCardsInRandomOrder: false,
       date: nextDays(1)
     })
     await expect(tabs2.reviewBadge).toHaveText('1')
@@ -130,6 +132,7 @@ test.describe('Settings › Account › Sync', () => {
     await app2.goto('/home/review', {
       tutorialEnabled: false,
       libraryLastSyncDate: 9999999999999,
+      reviewCardsInRandomOrder: false,
       date: nextDays(1)
     })
     await expect(tabs2.reviewBadge).toHaveText('1')

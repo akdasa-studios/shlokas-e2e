@@ -14,6 +14,6 @@ export class Account {
   get syncingProgress() { return this.page.getByTestId('syncing-progress') }
 
   async open() {
-    await this.page.goto('/home/settings/account?tutorialEnabled=false')
+    await this.page.goto('/home/settings/account?tutorialEnabled=false&reviewCardsInRandomOrder=false')
   }
 }

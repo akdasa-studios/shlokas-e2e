@@ -57,7 +57,7 @@ export async function logInNewDevice(
   const page    = await context.newPage()
   const tabs    = new TabsBar(page)
 
-  await page.goto('/home/library/?tutorialEnabled=false&autoSyncOnLogin=false')
+  await page.goto('/home/library/?tutorialEnabled=false&autoSyncOnLogin=false&reviewCardsInRandomOrder=false')
   await tabs.settingsTab.click()
   await signUp(context, page, email)
 

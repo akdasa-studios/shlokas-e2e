@@ -7,6 +7,7 @@ export interface ApplicationParams {
   tutorialEnabled?: boolean,
   libraryLastSyncDate?: number,
   autoSyncOnLogin?: boolean,
+  reviewCardsInRandomOrder?: boolean,
   date?: Date
 }
 
@@ -29,6 +30,7 @@ export class Application {
     const params: ApplicationParams = {
       tutorialEnabled: false,
       libraryLastSyncDate: 9999999999999,
+      reviewCardsInRandomOrder: false,
     }
     if (date) { params.date = date }
     await this.goto('/home/library', params)
