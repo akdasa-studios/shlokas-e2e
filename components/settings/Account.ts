@@ -6,7 +6,7 @@ export class Account {
   get signUpViaEmail() { return this.page.getByRole('button', { name: 'Sign in with Email'})  }
   get email()    { return this.page.getByLabel('EMail').first() }
   get code()     { return this.page.getByLabel('Code').first() }
-  get signUp()   { return this.page.getByRole('button',  { name: 'Send Email'}) }
+  get signUp()   { return this.page.getByRole('button',  { name: 'Next'}) }
   get logIn()    { return this.page.getByRole('button',  { name: 'Log In'}) }
   get signIn()   { return this.page.getByRole('button',  { name: 'Sign In'}) }
   get sync()     { return this.page.getByRole('button',  { name: 'Force Syncing'}) }
