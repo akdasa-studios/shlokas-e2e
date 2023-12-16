@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "playwright test"
+    "test": "playwright test",
+    "test:dev": "SHLOKAS_URL=http://shlokas:8080 playwright test"
   },
   "repository": {
     "type": "git",
