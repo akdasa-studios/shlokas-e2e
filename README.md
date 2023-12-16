@@ -16,8 +16,7 @@ This repository contains the end-to-end tests for the Shlokas mobile app. The te
 | SHLOKAS_URL | http://localhost:8080 | Url to run tests against for      |
 | MAIL_URL    | http://localhost:1080 | Url for real or fake mail service |
 
-##
-
+## Run tests
 You can run tests against specific urls:
 ```sh
 SHLOKAS_URL=http://app:8080 MAIL_URL=http://mail:1080 npm run tests
