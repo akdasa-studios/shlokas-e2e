@@ -2,8 +2,7 @@ name: E2E Tests
 
 
 on:
-  schedule:
-    - cron: '0 0 * * *'
+  push:
 
 
 env:
@@ -21,8 +20,18 @@ jobs:
     timeout-minutes: 30
     runs-on: ubuntu-latest
     steps:
+      - name: Extract branch name
+        shell: bash
+        run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
+        id: extract_branch
+
       - name: 📥 Checkout
         run: gh search repos --owner akdasa-studios --match name shlokas --visibility public | while read -r repo _; do gh repo clone "$repo" "$repo"; done
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 📥 Switch to PR
+        run: (cd ./akdasa-studios/shlokas-e2e && git checkout ${{ steps.extract_branch.outputs.branch }})
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
