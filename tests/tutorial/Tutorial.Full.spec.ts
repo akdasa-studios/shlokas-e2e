@@ -22,6 +22,7 @@ test.describe('Tutorial :: Full', () => {
     await app.inboxDeck.swipeCardLeft()
 
     // TODO: TBD later...
+
   })
 
 })
