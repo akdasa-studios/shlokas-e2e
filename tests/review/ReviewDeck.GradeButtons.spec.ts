@@ -12,7 +12,7 @@ test.describe('Review Deck › Grade Buttons', () => {
 
     await app.open()
     await addCardsToReview(page, ['BG 1.1'])
-    await app.open(nextDays(1))
+    await app.open({ date: nextDays(1) })
     await app.tabs.reviewTab.click()
   })
 

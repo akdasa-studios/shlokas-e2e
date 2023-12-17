@@ -19,7 +19,7 @@ test.describe('Review Deck › Swipe Cards', () => {
    */
   test('Swipe all cards up', async () => {
     // act:
-    await app.open(nextDays(1))
+    await app.open({ date: nextDays(1) })
     await app.tabs.reviewTab.click()
 
     await app.reviewDeck.swipeCardUp()
