@@ -18,7 +18,7 @@ test.describe('Review Deck › Schedule', () => {
    */
   test('Skip multiple days', async ({ page }) => {
     // act:
-    await app.open(nextDays(10))
+    await app.open({ date: nextDays(10) })
 
     // assert:
     // 1. we create 6 cards per verse, so we should see 6 cards
@@ -30,7 +30,7 @@ test.describe('Review Deck › Schedule', () => {
    */
   test('Scheduled cards for tomorrow message', async ({ page }) => {
     // act:
-    await app.open(nextDays(1))
+    await app.open({ date: nextDays(1) })
     await app.tabs.reviewTab.click()
 
     await app.reviewDeck.card('BG 1.1', "NumberToTranslation").click()
@@ -46,12 +46,12 @@ test.describe('Review Deck › Schedule', () => {
    */
   test('Schedule card for the next day', async ({ page }) => {
     // act:
-    await app.open(nextDays(1))
+    await app.open({ date: nextDays(1) })
     await app.tabs.reviewTab.click()
 
     await app.reviewDeck.card('BG 1.1', "NumberToTranslation").click()
     await app.reviewDeck.good.click()
-    await app.open(nextDays(2))
+    await app.open({ date: nextDays(2) })
     await app.tabs.reviewTab.click()
 
     // assert:
