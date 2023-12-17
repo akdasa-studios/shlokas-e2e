@@ -22,17 +22,17 @@ jobs:
     timeout-minutes: 30
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: 📥 Checkout
         run: gh search repos --owner akdasa-studios --match name shlokas --visibility public | while read -r repo _; do gh repo clone "$repo" "$repo"; done
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build
+      - name: 🏗️ Build
         run: (cd ./akdasa-studios/shlokas-server && ./shlokas.build.sh testing:dev)
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Start Environment
+      - name: 🎬 Start Environment
         run: (cd ./akdasa-studios/shlokas-server && ./shlokas.run.sh testing:dev)
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
