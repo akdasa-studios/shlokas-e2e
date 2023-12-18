@@ -17,10 +17,6 @@ test.describe('Library › Search › Change language', () => {
     await changeLanguage(app, 'Русский')
   })
 
-  test.afterEach(async ({ page }) => {
-    page.close()
-  })
-
 
   /* -------------------------------------------------------------------------- */
   /*                                    Tests                                   */

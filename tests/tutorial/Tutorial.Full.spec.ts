@@ -14,7 +14,7 @@ test.describe('Tutorial :: Full', () => {
 
     await app.tutorial.card(2).waitFor()
     await app.library.verse("BG 1.1").click()
-    await app.verseDetails.addButton.click()
+    await app.library.verseDetails.addButton.click()
     await app.tabs.inboxTab.click()
 
     await app.tutorial.card(6).waitFor()

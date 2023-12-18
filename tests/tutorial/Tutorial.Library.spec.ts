@@ -27,6 +27,6 @@ test.describe('Tutorial :: Library', () => {
    */
   test('Do not allow to open any verse but BG 1.1', async () => {
     await app.library.verse("BG 2.13").click()
-    await expect(app.verseDetails.addButton).not.toBeVisible()
+    await expect(app.library.verseDetails.addButton).not.toBeVisible()
   })
 })

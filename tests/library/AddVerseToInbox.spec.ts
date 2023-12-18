@@ -14,10 +14,6 @@ test.describe('Library › Add verse to Inbox', () => {
     await app.open()
   })
 
-  test.afterEach(async ({ page }) => {
-    await page.close()
-  })
-
 
   /* -------------------------------------------------------------------------- */
   /*                                    Tests                                   */
@@ -25,7 +21,7 @@ test.describe('Library › Add verse to Inbox', () => {
 
   test('Add verse to the Inbox deck', async () => {
     await app.library.verse('BG 1.1').click()
-    await app.verseDetails.addButton.click()
+    await app.library.verseDetails.addButton.click()
 
     await expect(app.library.verseBadge('BG 1.1')).toContainText('Inbox')
     await expect(app.tabs.inboxBadge).toContainText('2')
@@ -33,15 +29,15 @@ test.describe('Library › Add verse to Inbox', () => {
 
   test('Add button is disabled if verse has already been added', async () => {
     await app.library.verse('BG 1.1').click()
-    await app.verseDetails.addButton.click()
+    await app.library.verseDetails.addButton.click()
     await app.library.verse('BG 1.1').click()
 
-    await expect(app.verseDetails.addButton).toBeDisabled()
+    await expect(app.library.verseDetails.addButton).toBeDisabled()
   })
 
   test('Back returns to app.library', async () => {
     await app.library.verse('BG 1.1').click()
-    await app.verseDetails.backButton.click()
+    await app.library.verseDetails.backButton.click()
 
     await expect(app.library.searchbar).toBeVisible()
   })

@@ -1,5 +1,5 @@
 import { InboxDeckPage, ReviewDeckPage } from '@components/decks'
-import { LibraryPage, VerseDetailsPage } from '@components/library'
+import { LibraryPage } from '@components/library'
 import { TabsBar } from '@components/shared'
 import { TutorialOverlay } from '@components/tutorial'
 import { Page } from '@playwright/test'
@@ -15,7 +15,6 @@ export interface ApplicationParams {
 
 export class Application {
   public readonly library: LibraryPage
-  public readonly verseDetails: VerseDetailsPage
   public readonly tabs: TabsBar
   public readonly inboxDeck: InboxDeckPage
   public readonly reviewDeck: ReviewDeckPage
@@ -25,7 +24,6 @@ export class Application {
     public readonly page: Page
   ) {
     this.library = new LibraryPage(page)
-    this.verseDetails = new VerseDetailsPage(page)
     this.inboxDeck = new InboxDeckPage(page)
     this.tabs = new TabsBar(page)
     this.reviewDeck = new ReviewDeckPage(page)
