@@ -23,9 +23,9 @@ export class InboxDeckPage {
 
   async swipeCardUp(distance: number = 240, steps: number = 2) {
     await this.page.waitForTimeout(750)
-    await this.page.mouse.move(40, 580)
+    await this.page.mouse.move(40, 520)
     await this.page.mouse.down()
-    await this.page.mouse.move(40, 580 - distance, { steps })
+    await this.page.mouse.move(40, 520 - distance, { steps })
     await this.page.mouse.up()
     await this.page.waitForTimeout(750)
   }
