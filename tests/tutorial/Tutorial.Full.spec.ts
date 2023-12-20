@@ -35,6 +35,7 @@ test.describe('Tutorial :: Full', () => {
     await app.inboxDeck.swipeCardUp()
 
     await app.tutorial.card(11).waitFor()
+    // todo
   })
 
 })
