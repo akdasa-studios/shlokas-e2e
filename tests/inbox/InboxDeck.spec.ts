@@ -10,6 +10,9 @@ test.describe('Inbox Deck', () => {
     await app.open()
   })
 
+  /**
+   * "Inbox is empty" message should be visible when there are cards in the inbox.
+   */
   test('Inbox is empty', async () => {
     await app.tabs.inboxTab.click()
     await expect(app.tabs.inboxEmpty).toBeVisible()

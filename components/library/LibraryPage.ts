@@ -1,9 +1,14 @@
 import { Page } from '@playwright/test'
 import { testId } from '@utils/testId'
+import { VerseDetailsPage } from './VerseDetailsPage'
 
 
 export class LibraryPage {
   constructor(private readonly page: Page) {}
+
+  get verseDetails() {
+    return new VerseDetailsPage(this.page)
+  }
 
   get searchbar() {
     return this.page.getByPlaceholder('Search')
