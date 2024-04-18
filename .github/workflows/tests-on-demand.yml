@@ -1,6 +1,12 @@
 name: E2E On Demand
 
-on: workflow_dispatch
+on: 
+  workflow_dispatch:
+    inputs:
+      tags:
+        description: 'Test tags'     
+        required: true
+        default: 'all,smoke,chrome,safari'
 
 env:
   REGISTRY: ghcr.io
